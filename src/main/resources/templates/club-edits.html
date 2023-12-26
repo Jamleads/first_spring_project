@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments :: html_head"></head>
+<body>
+<div th:replace="fragments :: html_navbar"></div>
+
+<form role="form" method="post" th:action="@{/club/{clubId}/edit(clubId=${club.id})}" th:object="${club}">
+  <input type="hidden" th:field="*{id}">
+  <div >
+    <label for="title" class="form-label">Title</label>
+    <input
+            type="text"
+            class="form-control"
+            id="title"
+            name="title"
+            th:field="*{title}"
+            placeholder="Club Title"
+    >
+    <p th:if="${#fields.hasErrors('title')}" class="text-danger" th:errors="*{title}"></p>
+  </div>
+  <div>
+    <label for="photoUrl" class="form-label">PhotoUrl</label>
+    <input
+            type="text"
+            class="form-control"
+            id="photoUrl"
+            name="photoUrl"
+            th:field="*{photoUrl}"
+            placeholder="PhotoUrl Here"
+    >
+    <p th:if="${#fields.hasErrors('photoUrl')}" class="text-danger" th:errors="*{photoUrl}"></p>
+  </div>
+  <div>
+    <label for="content" class="form-label">Content</label>
+    <input
+            type="text"
+            class="form-control"
+            id="content"
+            name="content"
+            th:field="*{content}"
+            placeholder="Club Content Here"
+    >
+    <p th:if="${#fields.hasErrors('content')}" class="text-danger" th:errors="*{content}"></p>
+  </div>
+  <div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+</form>
+
+<div th:replace="fragments :: footer"></div>
+</body>
+<script th:replace="fragments :: main_src"></script>
+</html>

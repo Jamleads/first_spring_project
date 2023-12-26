@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="fragments :: html_head">
+
+    <title>Error Page</title>
+</head>
+<body>
+    <div th:replace="fragments :: html_navbar"></div>
+
+    <div>
+        <h1>Error</h1>
+        <p>Something went wrong. Please try again later.</p>
+        <p>Error Message: <span th:text="${#request.getAttribute('javax.servlet.error.message')}"></span></p>
+        <p>Status Code: <span th:text="${#request.getAttribute('javax.servlet.error.status_code')}"></span></p>
+        <p>Exception Type: <span th:text="${#request.getAttribute('javax.servlet.error.exception_type')}"></span></p>
+    </div>
+
+    <div th:replace="fragments :: footer"></div>
+</body>
+<script th:replace="fragments :: main_src"></script>
+</html>
