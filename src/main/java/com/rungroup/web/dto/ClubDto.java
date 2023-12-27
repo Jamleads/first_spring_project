@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 //import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Builder
@@ -25,4 +26,5 @@ public class ClubDto {
     private  String content;
     private LocalDateTime createdOn;
     private LocalDateTime updatedOn;
+    private List<EventDto> events;
 }
