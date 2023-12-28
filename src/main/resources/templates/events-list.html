@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head th:replace="fragments :: html_head">
+  <title>
+    the Event list
+  </title>
+</head>
+<body class="d-flex flex-column h-100">
+<div th:replace="fragments :: html_navbar"></div>
+<section class="py-5">
+  <div class="container px-5 my-5">
+    <div class="text-center mb-5">
+      <h1 class="fw-bolder">Find running events</h1>
+      <p class="lead fw-normal text-muted mb-0"></p>
+    </div>
+
+    <div class="row gx-5">
+<!--      <div>-->
+<!--        <form th:action="@{/club/search}" class="form-inline my-2 my-lg-0 mb-3">-->
+<!--          <input name="query" placeholder="Search" type="text" class="form-control me-sm-2 mb-5" aria-label="Search" />-->
+<!--        </form>-->
+<!--      </div>-->
+      <div class="col-lg-6 mb-2" th:each="event :${events}">
+        <div class="position-relative mb-3">
+          <img class="img-fluid rounded-3 mb-3" th:src="${event.photoUrl}" alt="..." />
+          <a th:text="${event.name}" class="h3 fw-bolder text-decoration-none link-dark stretched-link" href="#!"></a>
+        </div>
+        <a class="btn btn-primary" th:href="@{/events/{eventId}(eventId=${event.id})}">View</a>
+<!--        <a class="btn btn-primary" th:href="@{/club/{clubId}/edit(clubId=${club.id})}">Edit</a>-->
+      </div>
+    </div>
+  </div>
+</section>
+
+<section th:replace="fragments :: footer"></section>
+</body>
+<script th:replace="fragments :: main_src"></script>
+</html>
