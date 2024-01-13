@@ -2,7 +2,10 @@ package com.rungroup.web.service.impl;
 
 import com.rungroup.web.dto.ClubDto;
 import com.rungroup.web.models.Club;
+import com.rungroup.web.models.UserEntity;
 import com.rungroup.web.repository.ClubRepository;
+import com.rungroup.web.repository.UserRepository;
+import com.rungroup.web.security.SecurityUtil;
 import com.rungroup.web.service.ClubService;
 import org.springframework.stereotype.Service;
 
@@ -15,10 +18,12 @@ import static com.rungroup.web.mapper.ClubMapper.mapToClubDto;
 @Service
 public class ClubServiceImpl implements ClubService {
      private ClubRepository clubRepository;
+     private UserRepository userRepository;
 
 //     @Autowired
-    public ClubServiceImpl(ClubRepository clubRepository) {
+    public ClubServiceImpl(ClubRepository clubRepository, UserRepository userRepository) {
         this.clubRepository = clubRepository;
+        this.userRepository = userRepository;
     }
     @Override
     public List<ClubDto> findAllClubs() {
@@ -28,6 +33,9 @@ public class ClubServiceImpl implements ClubService {
 
     @Override
     public Club saveClub(Club club) {
+        String username = SecurityUtil.getSessionUser();
+        UserEntity user = userRepository.findFirstByUsername(username);
+        club.setCreatedBy(user);
         return clubRepository.save(club);
     }
 

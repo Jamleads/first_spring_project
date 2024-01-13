@@ -1,5 +1,6 @@
 package com.rungroup.web.dto;
 
+import com.rungroup.web.models.UserEntity;
 import com.sun.istack.NotNull;
 import lombok.Builder;
 import lombok.Data;
@@ -24,6 +25,7 @@ public class ClubDto {
     private String photoUrl;
     @NotEmpty(message = "Content should not be empty")
     private  String content;
+    private UserEntity createdBy;
     private LocalDateTime createdOn;
     private LocalDateTime updatedOn;
     private List<EventDto> events;
